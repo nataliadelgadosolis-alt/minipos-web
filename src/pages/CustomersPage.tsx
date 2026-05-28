@@ -93,10 +93,16 @@ export default function CustomersPage() {
                     <div className="flex gap-2">
 
                         <button
-                            className="rounded-lg bg-black px-4 py-2 text-white disabled:opacity-50"
-                            disabled={createMut.isPending}
+                            className={`rounded-lg px-4 py-2 text-white disabled:opacity-50 ${editingId
+                                ? "bg-gray-400 cursor-not-allowed"
+                                : "bg-black"
+                                }`}
+                            disabled={createMut.isPending || editingId !== null}
                         >
-                            {createMut.isPending ? "Creando…" : "Crear"}
+                            {createMut.isPending
+                                ? "Creando…": editingId
+                                    ? "Edición activa"
+                                    : "Crear"}
                         </button>
 
                         <button
